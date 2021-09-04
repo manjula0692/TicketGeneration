@@ -1,0 +1,56 @@
+*{
+    border-radius: 0 !important;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    
+    
+  }
+  #date{
+      float:right;
+  }
+  mat-form-field{
+      width:500px;
+      border-radius: 0;
+      text-align: center;
+      
+  }
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color:white;
+    border-radius: 0;
+  }
+  button{
+      background-color: rgb(59, 72, 184) !important;
+      align-self: flex-end !important;
+      margin-right:430px !important;
+      color: white !important;
+  }
+  mat-card{
+      width:800px;
+      border:none;
+      border-radius: 0;
+      margin-bottom: 10px;
+  }
+  .close{
+      background-color:white!important;
+      margin-left: 752px !important;
+    margin-bottom: 10px;
+    color: black !important;
+    
+}
+.scrollable {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+}
+button:disabled{
+    background-color: grey !important;
+}
+ 
+
+      
+  
