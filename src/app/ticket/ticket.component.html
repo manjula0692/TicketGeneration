@@ -17,16 +17,16 @@
   </mat-form-field>
   <mat-form-field appearance="outline" >
     
-    <textarea placeholder="Description" matInput  maxlength="100" formControlName="desc" required #des></textarea>
+    <textarea placeholder="Description" matInput  maxlength="100" (input)="onDesInput()" formControlName="desc" required #des></textarea>
     <mat-hint >{{des.value?.length || 0}}/100</mat-hint>   
-    <!-- <mat-error *ngIf="desc.errors?.maxlength">Max length is 100</mat-error> -->
+     <!-- <mat-error *ngIf="des.value.length==100">{{openSnackBar('limit 100 reached','ok')}}</mat-error>   -->
   </mat-form-field>
-  <button mat-button (click)="getValue(sub.value,option.value,des.value)"  [disabled]="!regiForm.valid" >Submit</button>
+  <button mat-button  [disabled]="!regiForm.valid" >Submit</button>
   
   <br>
   </form>
   <div class="scrollable">
-  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(i)"  >
+  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(in)"  >
     <button class="close" mat-button (click)="onNoClick(in);$event.stopPropagation()"  >X</button><br>
     Subject: &nbsp;{{i.subject}}<span id="date">Date: {{todayNumber|date}} </span>
     <br>

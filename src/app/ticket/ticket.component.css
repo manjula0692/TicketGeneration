@@ -1,6 +1,9 @@
 *{
     border-radius: 0 !important;
 }
+h2{
+    text-align: center;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -29,9 +32,9 @@ form {
       color: white !important;
   }
   mat-card{
-      width:800px;
+      width:800px ;
       border:none;
-      border-radius: 0;
+      border-radius: 0 ;
       margin-bottom: 10px;
   }
   .close{
@@ -45,6 +48,7 @@ form {
   height: 300px;
   overflow-y: auto;
   overflow-x: hidden;
+  margin:0 auto;
   
 }
 button:disabled{

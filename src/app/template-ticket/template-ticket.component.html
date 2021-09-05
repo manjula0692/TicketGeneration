@@ -1,9 +1,9 @@
-<p>template-ticket works!</p>
+
 <div class="main-wrapper" >
   
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>Ticket Generation</mat-card-title>
+      <h2>Ticket Generation</h2>
     </mat-card-header>
 
        
@@ -28,10 +28,22 @@
         </mat-form-field>
       
       <button mat-stroked-button color="accent" [disabled]="!myForm.valid" >SUBMIT</button>
-    {{myForm.value | json}}
     </form>
   </mat-card-content>
   </mat-card>
 
 </div>
+<!-- <div class="scrollable">
+  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(i)"  >
+    <button class="close" mat-button (click)="onNoClick(in);$event.stopPropagation()"  >X</button><br>
+    Subject: &nbsp;{{i.subject}}<span id="date">Date: {{todayNumber|date}} </span>
+    <br>
+   Priority: &nbsp;
+    <span [style.color]="i.options==='High' ? 'red':(i.options==='Medium'?'green':'blue')">
+    {{i.options}}</span>
+    <br>
+    <br>
+    Description:<br>{{i.description}}
+    <br>
+  </mat-card> -->
 

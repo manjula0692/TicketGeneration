@@ -16,6 +16,7 @@ import { TemplateTicketComponent } from './template-ticket/template-ticket.compo
 import {MatTabsModule} from '@angular/material/tabs';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule,MatTabsModule,MatSnackBarModule
+    MatButtonModule,MatTabsModule,MatSnackBarModule,MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

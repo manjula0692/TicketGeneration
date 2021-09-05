@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Ticket } from './type';
-import {FormControl, Validators,FormBuilder, FormGroup, FormsModule,NgForm} from '@angular/forms';
+import { Validators,FormBuilder, FormGroup,NgForm} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValuesService } from '../values.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -19,7 +21,7 @@ export class TicketComponent implements OnInit {
    items:Ticket[]=[];
    todayNumber?: Date;
 
-  constructor(private serv:ValuesService,private route:Router,private fb: FormBuilder) {
+  constructor(private serv:ValuesService,private route:Router,private fb: FormBuilder,public snackBar: MatSnackBar) {
     this.regiForm = fb.group({  
       'subjects' : ['', Validators.required],  
       'priority' : [null, Validators.required],        
@@ -29,37 +31,42 @@ export class TicketComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
+    this.items=this.serv.getAllTickectsReactive();
   }
- getValue(sub:string,opt:string,des:string){
-  this.todayNumber =new Date();
-   this.items.push({subject:sub,options:opt,description:des});
- }
-//  subjects = new FormControl('', [Validators.required]);
-//  priority = new FormControl('', [Validators.required]);
-//  desc = new FormControl('', [Validators.required,Validators.maxLength(100)]);
-//  getErrorMessage() {
-//   if (this.subjects.hasError('required')) {
-//     return 'You must enter a value';
-//   }
-// return "";}
+//  getValue(sub:string,opt:string,des:string){
+//   this.todayNumber =new Date();
+//    this.items.push({subject:sub,options:opt,description:des});
+//  }
 
-// inputValidate(){
-//   if(this.subjects.hasError('required')|| this.priority.hasError('required') || this.desc.hasError('required')){
-//     return true;}
-//     return false;
-//   }
+
    onNoClick(inde:number){
      this.items.splice(inde,1);
+    this.serv.delTicketReactive(inde);
    }
-   detailedup(selected:Ticket){
-         this.serv.funcdetails(selected);
+   detailedup(ticketIndex:number){
         
-         this.route.navigateByUrl('/details');
+         this.route.navigateByUrl(`/details/reactive/${ticketIndex}`);
    }
-   onFormSubmit(form:NgForm)  
-  {  
-    console.log(form);  
+   onFormSubmit(form:NgForm) 
+   
+  { 
+     let tickDetails={...form.value,date:new Date()}
+
+     this.serv.addTicketReactive(tickDetails);
+    console.log(form);
+      this.items.push();
   
 }
+onDesInput(){
+  console.log(this.regiForm.get(this.desc)?.value)
+  if(this.regiForm.get(this.desc)?.value.length=="100"){
+    this.openSnackBar("Reached 100limit","done");
+  }
+}
+openSnackBar(message:any,action:any) {
+  this.snackBar.open(message,action,{verticalPosition:'top',horizontalPosition:'end'});
+  console.log(message);
 
+}
 }

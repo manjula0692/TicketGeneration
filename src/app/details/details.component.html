@@ -1,6 +1,22 @@
-<p>Ticket Details</p>
-<div *ngIf="ticket" id="display">
-<h2>Subject : {{ticket.subject}}</h2>
-<p>Priority : {{ticket.options}}</p>
-<p>Description : {{ticket.description}}</p>
+<mat-button-toggle-group >
+    <mat-button-toggle value="matcard" #mat >MatCard</mat-button-toggle>
+    <mat-button-toggle value="mycard" #mine>MyCard</mat-button-toggle>
+  </mat-button-toggle-group>
+
+<mat-card >
+    <mat-card-title>Ticket Details</mat-card-title>
+    <mat-card-content *ngIf="ticket">
+        Subject : {{ticket.subject}}<span>Date:</span><br>
+        Priority : {{ticket.options}}<br>
+        Description : {{ticket.description}}<br>
+    </mat-card-content>
+</mat-card>
+<div id="myticket" *ngIf="ticket">
+    <h2>Ticket Details</h2>
+    <p>
+        Subject : {{ticket.subject}} <span>Date</span><br>
+        Priority : {{ticket.options}}<br>
+        Description : {{ticket.description}}<br>
+    </p>
 </div>
+
