@@ -56,6 +56,9 @@ onDesInput(val:string){
     this.openSnackBar("Reached word limit.","Ok");
   }
 }
+reset(){
+  this.regiForm.reset();
+}
 openSnackBar(message:any,action:any) {
   this.snackBar.open(message,action,{verticalPosition:'top',horizontalPosition:'end',panelClass:'bluesnackbar'
 });
