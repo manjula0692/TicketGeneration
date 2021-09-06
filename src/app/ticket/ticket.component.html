@@ -1,11 +1,11 @@
-<div id="maincon"><h2>Ticket Generation App</h2>
-  <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)" >
+<div id="maincon"><h2 class="heading">Ticket Generation App</h2>
+  <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit();regiForm.reset()" >
 <mat-form-field appearance="outline" >
    
     
-    <input placeholder="Subject" matInput  formControlName="subjects" required #sub>
+    <input placeholder="Subject" matInput  formControlName="subject" required #sub>
      
-      <mat-error ><span *ngIf="regiForm.controls.subjects.errors?.required">Please enter First Name !!!</span></mat-error>  
+      <mat-error ><span *ngIf="regiForm.controls.subject.errors?.required">Please enter Subject !!!</span></mat-error>  
   </mat-form-field>
   <mat-form-field appearance="outline" >
    
@@ -17,22 +17,22 @@
   </mat-form-field>
   <mat-form-field appearance="outline" >
     
-    <textarea placeholder="Description" matInput  maxlength="100" (input)="onDesInput()" formControlName="desc" required #des></textarea>
+    <textarea placeholder="Description" matInput  maxlength="100" (input)="onDesInput(des.value)" formControlName="description" required #des></textarea>
     <mat-hint >{{des.value?.length || 0}}/100</mat-hint>   
-     <!-- <mat-error *ngIf="des.value.length==100">{{openSnackBar('limit 100 reached','ok')}}</mat-error>   -->
+     
   </mat-form-field>
-  <button mat-button  [disabled]="!regiForm.valid" >Submit</button>
+  <button mat-button  [disabled]="!regiForm.valid" id="subbtn">Submit</button>
   
   <br>
   </form>
   <div class="scrollable">
-  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(in)"  >
+  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(in)" class="matcar" >
     <button class="close" mat-button (click)="onNoClick(in);$event.stopPropagation()"  >X</button><br>
-    Subject: &nbsp;{{i.subject}}<span id="date">Date: {{todayNumber|date}} </span>
+    Subject: &nbsp;{{i.subject}}<span id="date">Date: {{i.date|date:'short'}} </span>
     <br>
    Priority: &nbsp;
-    <span [style.color]="i.options==='High' ? 'red':(i.options==='Medium'?'green':'blue')">
-    {{i.options}}</span>
+    <span [style.color]="i.priority==='High' ? 'red':(i.priority==='Medium'?'green':'blue')">
+    {{i.priority}}</span>
     <br>
     <br>
     Description:<br>{{i.description}}

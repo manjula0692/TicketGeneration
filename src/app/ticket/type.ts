@@ -1,6 +1,6 @@
 export interface Ticket{
       subject:string;
-      options:string;
+      priority:string;
       description:string;
       date:string;
 }

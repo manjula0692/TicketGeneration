@@ -1,14 +1,21 @@
-*{
-    border-radius: 0 !important;
+#maincon{
+    border-radius: 8px;
+    
 }
-h2{
+.heading{
     text-align: center;
+    background-color: #788291;
+    
+    margin: 0!important;
 }
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: lightgray;
+    
+    margin-top: 0px;
+    
     
     
   }
@@ -23,9 +30,9 @@ form {
   }
   .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color:white;
-    border-radius: 0;
+    border-radius: 8px;
   }
-  button{
+  #subbtn{
       background-color: rgb(59, 72, 184) !important;
       align-self: flex-end !important;
       margin-right:430px !important;
@@ -34,9 +41,13 @@ form {
   mat-card{
       width:800px ;
       border:none;
-      border-radius: 0 ;
-      margin-bottom: 10px;
+      border-radius: 8px!important ;
+      margin-bottom: 10px!important;
   }
+  .matcar{
+      margin-left: 200px;
+  }
+ 
   .close{
       background-color:white!important;
       margin-left: 752px !important;
@@ -51,7 +62,7 @@ form {
   margin:0 auto;
   
 }
-button:disabled{
+button:disabled,#subbtn{
     background-color: grey !important;
 }
  

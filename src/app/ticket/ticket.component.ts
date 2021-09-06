@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,  ViewEncapsulation } from '@angular/core';
 import { Ticket } from './type';
 import { Validators,FormBuilder, FormGroup,NgForm} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,20 +12,18 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class TicketComponent implements OnInit {
-  regiForm: FormGroup;  
-  subjects:string='';  
-  priority:string='';  
-  desc:string=''; 
-
+  regiForm: FormGroup; 
   
+ 
+   
    items:Ticket[]=[];
    todayNumber?: Date;
 
   constructor(private serv:ValuesService,private route:Router,private fb: FormBuilder,public snackBar: MatSnackBar) {
     this.regiForm = fb.group({  
-      'subjects' : ['', Validators.required],  
+      'subject' : ['', Validators.required],  
       'priority' : [null, Validators.required],        
-      'desc' : [null, Validators.required],  
+      'description' : [null, Validators.required],  
        
     });  
    }
@@ -34,39 +32,32 @@ export class TicketComponent implements OnInit {
     
     this.items=this.serv.getAllTickectsReactive();
   }
-//  getValue(sub:string,opt:string,des:string){
-//   this.todayNumber =new Date();
-//    this.items.push({subject:sub,options:opt,description:des});
-//  }
-
-
    onNoClick(inde:number){
-     this.items.splice(inde,1);
-    this.serv.delTicketReactive(inde);
+    // this.items.splice(-(inde+1),1);
+    this.items=this.serv.delTicketReactive(-(inde+1));
+    // this.items=this.serv.getAllTickectsReactive();
    }
    detailedup(ticketIndex:number){
         
          this.route.navigateByUrl(`/details/reactive/${ticketIndex}`);
    }
-   onFormSubmit(form:NgForm) 
+   onFormSubmit() 
    
   { 
-     let tickDetails={...form.value,date:new Date()}
+     let tickDetails={...this.regiForm.value,date:new Date()}
 
      this.serv.addTicketReactive(tickDetails);
-    console.log(form);
-      this.items.push();
+      this.items.push(this.regiForm.value);
+      console.log(this.items);
   
 }
-onDesInput(){
-  console.log(this.regiForm.get(this.desc)?.value)
-  if(this.regiForm.get(this.desc)?.value.length=="100"){
-    this.openSnackBar("Reached 100limit","done");
+onDesInput(val:string){
+  if(val.length==100){
+    this.openSnackBar("Reached word limit.","Ok");
   }
 }
 openSnackBar(message:any,action:any) {
-  this.snackBar.open(message,action,{verticalPosition:'top',horizontalPosition:'end'});
-  console.log(message);
-
+  this.snackBar.open(message,action,{verticalPosition:'top',horizontalPosition:'end',panelClass:'bluesnackbar'
+});
 }
 }

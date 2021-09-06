@@ -8,15 +8,16 @@
 
        
       <mat-card-content>
-        <form class="example-form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" novalidate>
+        <form class="example-form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm);myForm.resetForm()" novalidate>
           
         <mat-form-field class="example-full-width" >
-          <input matInput placeholder="Subject" name="subject" ngModel required >
+          <input matInput placeholder="Subject" name="subject" ngModel required #name>
+          <mat-error ><span *ngIf="name.value===''">Please enter Subject !!!</span></mat-error>  
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Priority</mat-label>
-          <mat-select  ngModel name="priority" >
+          <mat-select  ngModel name="priority" required>
             <mat-option value="High">High</mat-option>
             <mat-option value="Medium">Medium</mat-option>
             <mat-option value="Low">Low</mat-option>
@@ -24,26 +25,27 @@
         </mat-form-field>
         <mat-form-field >
           
-          <textarea matInput placeholder="Description" name="description" ngModel ></textarea>
+          <textarea matInput placeholder="Description" maxlength="100" name="description" ngModel #des required></textarea>
+          <mat-hint >{{des.value?.length || 0}}/100</mat-hint> 
         </mat-form-field>
       
-      <button mat-stroked-button color="accent" [disabled]="!myForm.valid" >SUBMIT</button>
+      <button mat-stroked-button color="accent" [disabled]="!myForm.valid"  id="submitbtn" class="sbtbtn">SUBMIT</button>
     </form>
   </mat-card-content>
   </mat-card>
 
 </div>
-<!-- <div class="scrollable">
-  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(i)"  >
+ <div class="scrollable">
+  <mat-card *ngFor="let i of items.slice().reverse();let in=index;" (click)="detailedup(in)"  class="ticketmat">
     <button class="close" mat-button (click)="onNoClick(in);$event.stopPropagation()"  >X</button><br>
-    Subject: &nbsp;{{i.subject}}<span id="date">Date: {{todayNumber|date}} </span>
+    Subject: &nbsp;{{i.subject}}<span id="date">Date: {{i.date|date:'short'}} </span>
     <br>
    Priority: &nbsp;
-    <span [style.color]="i.options==='High' ? 'red':(i.options==='Medium'?'green':'blue')">
-    {{i.options}}</span>
+    <span [style.color]="i.priority==='High' ? 'red':(i.priority==='Medium'?'green':'blue')">
+    {{i.priority}}</span>
     <br>
     <br>
     Description:<br>{{i.description}}
     <br>
-  </mat-card> -->
+  </mat-card> 
 

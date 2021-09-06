@@ -1,22 +1,58 @@
-<mat-button-toggle-group >
-    <mat-button-toggle value="matcard" #mat >MatCard</mat-button-toggle>
+<mat-button-toggle-group #matGroup="matButtonToggleGroup" class="toggleGroup">
+    <mat-button-toggle value="matcard" #mat  >MatCard</mat-button-toggle>
     <mat-button-toggle value="mycard" #mine>MyCard</mat-button-toggle>
   </mat-button-toggle-group>
 
-<mat-card >
-    <mat-card-title>Ticket Details</mat-card-title>
-    <mat-card-content *ngIf="ticket">
-        Subject : {{ticket.subject}}<span>Date:</span><br>
-        Priority : {{ticket.options}}<br>
-        Description : {{ticket.description}}<br>
-    </mat-card-content>
+<mat-card *ngIf="matGroup.value==='matcard' " >
+    <mat-card-title style="text-align: center">Ticket Details</mat-card-title>
+    
+        <mat-card-content *ngIf="ticketReactive ">
+            Subject :  {{ticketReactive.subject}}><br>
+            Date: &nbsp;&nbsp;&nbsp;{{ticketReactive.date | date:'short'}}<br> 
+            
+        <span style="margin-left: 0" [style.color]="colorvalue">
+            Priority : {{ticketReactive.priority}}</span><br>
+            Description : <span>{{ticketReactive.description}}</span><br>
+            Status: <br>
+        </mat-card-content>
+    
+        <mat-card-content *ngIf='ticketTemplate  '>
+            Subject : <span> {{ticketTemplate.subject}}</span><br>
+            Date: {{ticketTemplate.date | date:'short'}} &nbsp;&nbsp;&nbsp; <br> 
+            
+        <span style="margin-left: 0" [style.color]="colorvalue">
+            Priority : {{ticketTemplate.priority}}</span><br>
+            Description : <span>{{ticketTemplate.description}}</span><br>
+            Status: <br>
+        </mat-card-content>   
+    
 </mat-card>
-<div id="myticket" *ngIf="ticket">
+    
+<div id="myticket" *ngIf="ticketTemplate && matGroup.value==='mycard' ">
     <h2>Ticket Details</h2>
-    <p>
-        Subject : {{ticket.subject}} <span>Date</span><br>
-        Priority : {{ticket.options}}<br>
-        Description : {{ticket.description}}<br>
-    </p>
+    <div>
+        <div class="topbar"> <p>
+            Status:&nbsp;&nbsp;&nbsp;</p><p> <b>Date:</b>{{ticketTemplate.date | date:'short'}}</p><p>Assigned To:</p>
+           </div>
+        Subject : <span>{{ticketTemplate.subject}} </span><br>
+        
+        <span style="margin-left: 0" [style.color]="colorvalue">
+        Priority :{{ticketTemplate.priority}}</span><br>
+        Description : {{ticketTemplate.description}}<br><br><br>
+        
+        </div>
+</div>
+<div id="myticket" *ngIf="ticketReactive && matGroup.value==='mycard' ">
+    <h2>Ticket Details</h2>
+    <div>
+    <div class="topbar"> <p>
+        Status:&nbsp;&nbsp;&nbsp;</p><p> <b>Date:</b>{{ticketReactive.date | date:'short'}}</p><p>Assigned To:</p>
+       </div>
+        <b> Subject</b> :  {{ticketReactive.subject}} <br>
+        
+       <b>Priority</b> : <span  [style.color]="colorvalue" style="margin-left: 0">{{ticketReactive.priority}}<br></span>
+       <b> Description </b>: {{ticketReactive.description}}<br><br><br>
+    
+    </div>
 </div>
 
