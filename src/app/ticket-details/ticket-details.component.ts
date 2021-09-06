@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ValuesService } from '../values.service';
+import { Ticket } from '../ticket/type';
 
 @Component({
   selector: 'app-ticket-details',
@@ -7,10 +9,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation:ViewEncapsulation.None,
 })
 export class TicketDetailsComponent implements OnInit {
-
-  constructor() { }
+  items:Ticket[]=[];
+  constructor(private serv:ValuesService) {
+  }
 
   ngOnInit(): void {
+    this.items=this.serv.getAllTickectsReactive();
+  }
+
+  onTabChange(){
+    this.items=this.serv.getAllTickectsReactive();
   }
 
 }
