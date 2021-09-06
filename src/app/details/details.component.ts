@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
    ticketReactive?:Ticket;
-   ticketTemplate?:Ticket;colorvalue?:string;
+   colorvalue?:string;
   constructor(private ticky:ValuesService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -21,14 +21,7 @@ export class DetailsComponent implements OnInit {
       let priority=this.ticketReactive?.priority;
       this.colorvalue=priority==="High"?'red':priority==="Medium"?'green':'blue';
     }
-    // else if(this.route.snapshot.params.type==="template"){
-    //   const ticketIndex=this.route.snapshot.params.ticketIndex;
-    //   this.ticketTemplate=this.ticky.getTicketByIndexTemplate(ticketIndex);
-    //   console.log(this.ticketTemplate);
-    //   let priority=this.ticketTemplate?.priority;
-    //   this.colorvalue=priority==="High"?'red':priority==="Medium"?'green':'blue';
-
-    // }
+    
   
    
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit,  ViewEncapsulation } from '@angular/core';
 import { Ticket } from './type';
-import { Validators,FormBuilder, FormGroup,NgForm} from '@angular/forms';
+import { Validators,FormBuilder, FormGroup} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValuesService } from '../values.service';
 import { Router } from '@angular/router';

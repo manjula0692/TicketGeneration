@@ -7,16 +7,17 @@
     <mat-card-title style="text-align: center">Ticket Details</mat-card-title>
     
         <mat-card-content *ngIf="ticketReactive ">
+           <div class="topbar"> <p>Date: &nbsp;&nbsp;&nbsp;{{ticketReactive.date | date:'short'}}</p> 
+            <p>
+            <span style="margin-left: 0" [style.color]="colorvalue">
+                Priority : {{ticketReactive.priority}}</span></p><br></div>
             Subject :  {{ticketReactive.subject}}><br>
-            Date: &nbsp;&nbsp;&nbsp;{{ticketReactive.date | date:'short'}}<br> 
-            
-        <span style="margin-left: 0" [style.color]="colorvalue">
-            Priority : {{ticketReactive.priority}}</span><br>
+           
             Description : <span>{{ticketReactive.description}}</span><br>
             Status: <br>
         </mat-card-content>
     
-        <mat-card-content *ngIf='ticketTemplate  '>
+        <!-- <mat-card-content *ngIf='ticketTemplate  '>
             Subject : <span> {{ticketTemplate.subject}}</span><br>
             Date: {{ticketTemplate.date | date:'short'}} &nbsp;&nbsp;&nbsp; <br> 
             
@@ -24,11 +25,11 @@
             Priority : {{ticketTemplate.priority}}</span><br>
             Description : <span>{{ticketTemplate.description}}</span><br>
             Status: <br>
-        </mat-card-content>   
+        </mat-card-content>    -->
     
 </mat-card>
     
-<div id="myticket" *ngIf="ticketTemplate && matGroup.value==='mycard' ">
+<!-- <div id="myticket" *ngIf="ticketTemplate && matGroup.value==='mycard' ">
     <h2>Ticket Details</h2>
     <div>
         <div class="topbar"> <p>
@@ -41,13 +42,14 @@
         Description : {{ticketTemplate.description}}<br><br><br>
         
         </div>
-</div>
+</div> -->
 <div id="myticket" *ngIf="ticketReactive && matGroup.value==='mycard' ">
     <h2>Ticket Details</h2>
     <div>
     <div class="topbar"> <p>
         Status:&nbsp;&nbsp;&nbsp;</p><p> <b>Date:</b>{{ticketReactive.date | date:'short'}}</p><p>Assigned To:</p>
        </div>
+       
         <b> Subject</b> :  {{ticketReactive.subject}} <br>
         
        <b>Priority</b> : <span  [style.color]="colorvalue" style="margin-left: 0">{{ticketReactive.priority}}<br></span>
