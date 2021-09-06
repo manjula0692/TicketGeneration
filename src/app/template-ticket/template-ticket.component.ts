@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Ticket } from '../ticket/type';
@@ -11,7 +11,7 @@ import { ValuesService } from '../values.service';
   
 })
 export class TemplateTicketComponent implements OnInit {
-  
+  @Input()
   items:Ticket[]=[];
   todayNumber?: Date;
   
@@ -20,7 +20,7 @@ export class TemplateTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.items=this.serv.getAllTickectsReactive();
+    // this.items=this.serv.getAllTickectsReactive();
   }
   onNoClick(inde:number){
     this.items=this.serv.delTicketReactive(-(inde+1));

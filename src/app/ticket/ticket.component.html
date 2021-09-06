@@ -5,7 +5,7 @@
     
     <input placeholder="Subject" matInput  formControlName="subject" required #sub>
      
-      <mat-error ><span *ngIf="regiForm.controls.subject.errors?.required">Please enter Subject !!!</span></mat-error>  
+      <mat-error ><span *ngIf="regiForm.dirty && regiForm.controls.subject.errors?.required">Please enter Subject !!!</span></mat-error>  
   </mat-form-field>
   <mat-form-field appearance="outline" >
    
@@ -21,6 +21,7 @@
     <mat-hint >{{des.value?.length || 0}}/100</mat-hint>   
      
   </mat-form-field>
+  <button mat-button (click)="reset()">Reset</button>
   <button mat-button  [disabled]="!regiForm.valid" id="subbtn">Submit</button>
   
   <br>

@@ -1,4 +1,4 @@
-import { Component, OnInit,  ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,  ViewEncapsulation, Input } from '@angular/core';
 import { Ticket } from './type';
 import { Validators,FormBuilder, FormGroup} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +15,7 @@ export class TicketComponent implements OnInit {
   regiForm: FormGroup; 
   
  
-   
+   @Input()
    items:Ticket[]=[];
    todayNumber?: Date;
 
@@ -25,12 +25,12 @@ export class TicketComponent implements OnInit {
       'priority' : [null, Validators.required],        
       'description' : [null, Validators.required],  
        
-    });  
+    });      
    }
 
   ngOnInit(): void {
     
-    this.items=this.serv.getAllTickectsReactive();
+    // this.items=this.serv.getAllTickectsReactive();
   }
    onNoClick(inde:number){
     // this.items.splice(-(inde+1),1);
@@ -55,6 +55,9 @@ onDesInput(val:string){
   if(val.length==100){
     this.openSnackBar("Reached word limit.","Ok");
   }
+}
+reset(){
+  this.regiForm.reset();
 }
 openSnackBar(message:any,action:any) {
   this.snackBar.open(message,action,{verticalPosition:'top',horizontalPosition:'end',panelClass:'bluesnackbar'
